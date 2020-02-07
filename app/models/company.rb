@@ -1,7 +1,8 @@
 class Company < ApplicationRecord
 	validates :name, :city, :state, :founded_on, :description, presence: true
-	has_many :founders
-	has_many :categories
+	validates :name, uniqueness: {message: "is already a company"}
+	has_many :founders, dependent: :destroy
+	has_many :categories, dependent: :destroy
 
 	def get_company_detail
 		founders = self.founders

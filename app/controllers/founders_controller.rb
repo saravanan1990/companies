@@ -33,7 +33,8 @@ class FoundersController < ApplicationController
         format.json { render :show, status: :created, location: @founder }
       else
         format.html { render :new }
-        format.json { render json: @founder.errors, status: :unprocessable_entity }
+        error = @founder.errors.keys[0].to_s.capitalize+" "+@founder.errors.values[0][0].to_s
+        format.json { render json: {message: error}, status: 400 }
       end
     end
   end
