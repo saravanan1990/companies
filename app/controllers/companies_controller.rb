@@ -48,7 +48,8 @@ class CompaniesController < ApplicationController
         format.json {render json: {message: response_hash}, status: 200}
       else
         format.html { render :new }
-        format.json { render json: {message: @company.errors}, status: 400 }
+        error = @company.errors.keys[0].to_s.capitalize+" "+@company.errors.values[0][0].to_s
+        format.json { render json: {message: error}, status: 400 }
       end
     end
   end
@@ -63,7 +64,8 @@ class CompaniesController < ApplicationController
         format.json {render json: {message: response_hash}, status: 200}
       else
         format.html { render :edit }
-        format.json { render json: @company.errors, status: 422 }
+        error = @company.errors.keys[0].to_s.capitalize+" "+@company.errors.values[0][0].to_s
+        format.json { render json: {message: error}, status: 422 }
       end
     end
   end
