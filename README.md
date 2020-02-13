@@ -1,5 +1,7 @@
 # README
 
+Deployed to heroku production with search feature implementation.
+
 Run the rails server in development mode in port 5000 - react app will by default run in 3000 port
 
 This README would normally document whatever steps are necessary to get the
