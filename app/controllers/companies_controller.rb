@@ -81,6 +81,15 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def search_companies
+    col_name = 'name'
+    @companies = Company.where("LOWER(#{col_name}) LIKE ?",'%' + params[:company][:name] + '%')
+    respond_to do |format|
+      format.html {}
+      format.json {render json: {message: @companies}, status: 200}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
